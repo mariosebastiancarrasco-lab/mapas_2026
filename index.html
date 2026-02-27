@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🗺️ COLEGIO PRIVADO PABLO PIZZURNO</title>
+    <title>🗺️ COLEGIO PRIVADO PABLO PIZZURNO - NIVEL SECUNDARIO </title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <style>
@@ -43,29 +43,28 @@
 </head>
 <body>
     <header>
-        <h1>🗺️ COLEGIO PRIVADO PABLO PIZZURNO</h1>
-        <p>San Salvador de Jujuy, Jujuy</p>
+        <h1>🗺️ COLEGIO PRIVADO PABLO PIZZURNO - NIVEL SECUNDARIO </h1>
+        <p>SAN SALVADOR DE JUJUY, Jujuy</p>
     </header>
     
     <div class="container">
         <div id="sidebar">
             <h3><center> 📍 DATOS COMPLETOS</center></h3>
             <ul>
-                <li><h3><strong> CUE:</strong> 380000600</h3></li>
+                <li><h3><strong> CUE-anexo:</strong> 380000600</h3></li>
                 <li><strong>📍 Coordenadas:</strong> -24.19528, -65.31509</li>
-                <li><strong>📞 Teléfono:</strong> 388-4226260 / 4234036</li>
+                <li><strong>📞 Teléfono:</strong> 388 - 4226260 / 4234036</li>
                 <li><strong>✉️ Email:</strong> <a href="mailto:colegioppizzurno@hotmail.com">colegioppizzurno@hotmail.com</a></li>
-                <li><strong>📍 Dirección:</strong> La Rioja 1970</li>
-                <li><strong>🏘️ Barrio:</strong> Cuyaya</li>
-                <li><strong>Ⓛ Localidad:</strong> San Salvador de Jujuy</li> 
-		<li><strong>Ⓓ Departamento:</strong> Dr. Manuel Belgrano</li>
+                <li><strong>📍 Dirección:</strong> LA RIOJA - 1970</li>
+                <li><strong>🏘️ Barrio:</strong> CUYAYA</li>
+                <li><strong>Ⓛ Localidad:</strong> SAN SALVADOR DE JUJUY</li> 
+		<li><strong>Ⓓ Departamento:</strong> DOCTOR MANUEL BELGRANO</li>
 		<li><strong>🌍 Región Educativa:</strong> 3</li>
 		<li><strong>Ⓐ Ámbito:</strong> Urbano</li>
 		<li><strong>Ⓢ Sector:</strong> Privado</li>
                 <li><strong>⏰ Jornada:</strong> Simple</li>
-                <li><strong>📚 Modalidad:</strong> Común - Secundaria</li>
-                <li><strong>🎯 Orientación:</strong> Bachiller Ciencias Naturales</li>
-		<li><strong>⭕ Radio:</strong> 500m (círculo rojo)</li>
+                <li><strong>📚 Modalidad-Nivel:</strong> Común - Secundaria</li>
+                            <li><strong>⭕ Radio:</strong> 500m (círculo rojo)</li>
             </ul>
             
             <h2>🛰️ Mapas Base</h2>
@@ -76,7 +75,7 @@
             </div>
             
             <h2>🎛️ Controles</h2>
-            <button onclick="map.setView([-24.19528, -65.31509], 17)">📍 Centrar Colegio</button>
+            <button onclick="map.setView([-24.19528 , -65.31509], 17)">📍 Centrar Colegio</button>
             <button onclick="map.locate()">📱 Mi Ubicación</button>
 
 	    <h2>📋 Instrucciones</h2>
@@ -90,7 +89,7 @@
         <div id="map"></div>
     </div>
     
-    <footer>Desarrollado con ❤️ para Jujuy - Autor: Prof.Univ./T.S.I, Carrasco Sebastián | © 2026 Jujuy | OpenStreetMap & Esri | Datos: Mapa Educativo Provincial - RAWeb - Ministerio de Educación</footer>
+    <footer>Desarrollado para Jujuy - Autor: Prof.Univ., T.S.I, Carrasco Sebastián |  2026 Jujuy | OpenStreetMap & Esri | Fuente de Datos: Mapa Educativo Provincial – RAWeb2025 - Ministerio de Educación</footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
@@ -108,13 +107,13 @@
 	// Marcador principal con popup mejorado
         L.marker([-24.19528, -65.31509]).addTo(map).bindPopup(`
             <div style="text-align:center; min-width:280px; font-family:Arial;">
-                <h3 style="color:#2c3e50; margin-bottom:12px;">🏫 COLEGIO PRIVADO PABLO PIZZURNO</h3>
-                <p><strong>CUE:</strong> 380000600</p>
+                <h3 style="color:#2c3e50; margin-bottom:12px;">🏫 COLEGIO PRIVADO PABLO PIZZURNO - NIVEL SECUNDARIO</h3>
+                <p><strong>CUE-anexo:</strong> 380000600</p>
                 <p><strong>📍 Coords:</strong> -24.19528, -65.31509</p>
-                <p><strong>📞 Tel:</strong> 388-4226260 / 4234036</p>
+                <p><strong>📞 Tel:</strong> 388 - 4226260 / 4234036</p>
                 <p><strong>✉️ Email:</strong> <a href="mailto:colegioppizzurno@hotmail.com">colegioppizzurno@hotmail.com</a></p>
-                <p><strong>📍 Dirección:</strong> La Rioja 1970, Cuyaya</p>
-                <p><em>Región Educativa 3 • Jornada Simple<br>Secundaria - Bachiller Ciencias Naturales</em></p>
+                <p><strong>📍 Dirección:</strong> LA RIOJA 1970 , CUYAYA</p>
+                <p><em>Región Educativa 3 • Jornada Simple<br>Común - Secundaria </em></p>
                 <hr style="margin:15px 0;">
                 <button onclick="window.open('https://www.google.com/maps?q=-24.19528,-65.31509')" 
                         style="background:#e74c3c;color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:14px;">
