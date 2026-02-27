@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗺️ COLEGIO PRIVADO PABLO PIZZURNO</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 95vh; }
+        
+        header { background: rgba(255,255,255,0.95); padding: 0.8rem; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        header h1 { color: #2c3e50; font-size: 1.3rem; margin: 0; }
+        
+        .container { display: flex; height: calc(100% - 80px); }
+        
+        #sidebar { 
+            width: 350px; background: rgba(255,255,255,0.95); padding: 1.2rem; overflow-y: auto; box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+        #sidebar h2 { color: #2c3e50; margin: 0.6rem 0 1rem 0; border-bottom: 2px solid #3498db; padding-bottom: 0.4rem; font-size: 1rem; }
+        #sidebar ul { list-style: none; font-size: 0.9rem; }
+        #sidebar li { padding: 0.3rem 0; border-bottom: 1px solid #ecf0f1; }
+        #sidebar a { color: #3498db; text-decoration: none; }
+        #sidebar a:hover { text-decoration: underline; }
+        #sidebar button { width: 100%; background: #3498db; color: white; border: none; padding: 0.6rem; margin: 0.3rem 0; border-radius: 5px; cursor: pointer; font-size: 0.9rem; }
+        #sidebar button:hover { background: #2980b9; }
+        .map-buttons { display: flex; gap: 0.3rem; margin: 0.5rem 0; }
+        .map-buttons button { flex: 1; padding: 0.5rem; font-size: 0.85rem; background: #27ae60; border-radius: 4px; }
+        .map-buttons button:hover { background: #229954; }
+        .map-buttons button.active { background: #e74c3c; }
+        
+        #map { flex: 1; height: 100%; border-radius: 0 15px 15px 0; }
+        
+        footer { background: rgba(0,0,0,0.8); color: white; text-align: center; padding: 0.6rem; font-size: 0.8rem; }
+        
+        @media (max-width: 768px) { 
+            .container { flex-direction: column; }
+            #sidebar { width: 100%; height: 280px; }
+            #map { height: 450px; border-radius: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🗺️ COLEGIO PRIVADO PABLO PIZZURNO</h1>
+        <p>San Salvador de Jujuy, Jujuy</p>
+    </header>
+    
+    <div class="container">
+        <div id="sidebar">
+            <h3><center> 📍 DATOS COMPLETOS</center></h3>
+            <ul>
+                <li><h3><strong> CUE:</strong> 380000600</h3></li>
+                <li><strong>📍 Coordenadas:</strong> -24.19528, -65.31509</li>
+                <li><strong>📞 Teléfono:</strong> 388-4226260 / 4234036</li>
+                <li><strong>✉️ Email:</strong> <a href="mailto:colegioppizzurno@hotmail.com">colegioppizzurno@hotmail.com</a></li>
+                <li><strong>📍 Dirección:</strong> La Rioja 1970</li>
+                <li><strong>🏘️ Barrio:</strong> Cuyaya</li>
+                <li><strong>Ⓛ Localidad:</strong> San Salvador de Jujuy</li> 
+		<li><strong>Ⓓ Departamento:</strong> Dr. Manuel Belgrano</li>
+		<li><strong>🌍 Región Educativa:</strong> 3</li>
+		<li><strong>Ⓐ Ámbito:</strong> Urbano</li>
+		<li><strong>Ⓢ Sector:</strong> Privado</li>
+                <li><strong>⏰ Jornada:</strong> Simple</li>
+                <li><strong>📚 Modalidad:</strong> Común - Secundaria</li>
+                <li><strong>🎯 Orientación:</strong> Bachiller Ciencias Naturales</li>
+		<li><strong>⭕ Radio:</strong> 500m (círculo rojo)</li>
+            </ul>
+            
+            <h2>🛰️ Mapas Base</h2>
+            <div class="map-buttons">
+                <button class="active" onclick="changeBaseMap('osm')">🗺️ Calles</button>
+                <button onclick="changeBaseMap('satellite')">🛰️ Satélite</button>
+                <button onclick="changeBaseMap('terrain')">🏔️ Terreno</button>
+            </div>
+            
+            <h2>🎛️ Controles</h2>
+            <button onclick="map.setView([-24.19528, -65.31509], 17)">📍 Centrar Colegio</button>
+            <button onclick="map.locate()">📱 Mi Ubicación</button>
+
+	    <h2>📋 Instrucciones</h2>
+            <ol style="font-size: 0.95rem;">
+                <li>Haz clic en el marcador para info detallada</li>
+                <li>Usa +/− para zoom</li>
+                <li>Arrastra para mover el mapa</li>
+                <li>Botones laterales para acciones rápidas</li>
+            </ol> 	
+        </div>
+        <div id="map"></div>
+    </div>
+    
+    <footer>Desarrollado con ❤️ para Jujuy - Autor: Prof.Univ./T.S.I, Carrasco Sebastián | © 2026 Jujuy | OpenStreetMap & Esri | Datos: Mapa Educativo Provincial - RAWeb - Ministerio de Educación</footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+        let map, currentBaseLayer;
+        const baseMaps = {
+            'osm': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 18, attribution: '© OSM'}),
+            'satellite': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {maxZoom: 18}),
+            'terrain': L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {maxZoom: 18})
+        };
+        
+        map = L.map('map', {layers: [baseMaps.osm], center: [-24.19528, -65.31509], zoom: 17});
+        currentBaseLayer = baseMaps.osm;
+        
+	// Marcador principal con popup mejorado
+        L.marker([-24.19528, -65.31509]).addTo(map).bindPopup(`
+            <div style="text-align:center; min-width:280px; font-family:Arial;">
+                <h3 style="color:#2c3e50; margin-bottom:12px;">🏫 COLEGIO PRIVADO PABLO PIZZURNO</h3>
+                <p><strong>CUE:</strong> 380000600</p>
+                <p><strong>📍 Coords:</strong> -24.19528, -65.31509</p>
+                <p><strong>📞 Tel:</strong> 388-4226260 / 4234036</p>
+                <p><strong>✉️ Email:</strong> <a href="mailto:colegioppizzurno@hotmail.com">colegioppizzurno@hotmail.com</a></p>
+                <p><strong>📍 Dirección:</strong> La Rioja 1970, Cuyaya</p>
+                <p><em>Región Educativa 3 • Jornada Simple<br>Secundaria - Bachiller Ciencias Naturales</em></p>
+                <hr style="margin:15px 0;">
+                <button onclick="window.open('https://www.google.com/maps?q=-24.19528,-65.31509')" 
+                        style="background:#e74c3c;color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:14px;">
+                    🚗 Abrir en Google Maps
+                </button>
+            </div>
+        `);
+
+	// Círculo de radio
+        L.circle([-24.19528, -65.31509], {
+            color: '#3498db',
+            fillColor: '#F52749',
+            fillOpacity: 0.3,
+            radius: 500
+        }).addTo(map);
+        
+
+	// Geocodificador de búsqueda
+        L.Control.geocoder({defaultMarkGeocode: true, position: 'topleft'}).addTo(map);
+        
+        function changeBaseMap(type) {
+            map.removeLayer(currentBaseLayer);
+            currentBaseLayer = baseMaps[type];
+            currentBaseLayer.addTo(map);
+            document.querySelectorAll('.map-buttons button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        map.on('locationfound', e => {
+            L.marker(e.latlng).addTo(map).bindPopup(
+                `Estás aquí!<br>Distancia al colegio: ${Math.round(map.distance(e.latlng, [-24.19528, -65.31509]))}m`
+            );
+        });
+    </script>
+</body>
+</html>
